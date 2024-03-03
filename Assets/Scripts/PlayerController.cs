@@ -63,6 +63,10 @@ public class PlayerController : MonoBehaviour
 
             isInvincible = true;
             invincibleTimer = timeInvincible;
+            //UI updating Health
+            UIDisplay.instance.RemoveHealth();
+            //UI updating Points
+            UIDisplay.instance.AddPoint();
         }
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
