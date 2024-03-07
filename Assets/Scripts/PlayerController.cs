@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     Animator animator;
 
+    [SerializeField] GameObject gameOver;
+    public static bool GameOvered = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +43,19 @@ public class PlayerController : MonoBehaviour
             invincibleTimer -= Time.deltaTime;
             if (invincibleTimer < 0)
                 isInvincible = false;
+        }
+        if (currentHealth <= 0)
+        {
+            Time.timeScale = 0f;
+            gameOver.SetActive(true);
+            GameOvered = true;
+        }
+        if (GameOvered && Input.GetKeyDown(KeyCode.R))
+        {
+            Time.timeScale = 1f;
+            gameOver.SetActive(false);
+            GameOvered = false;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("SceneAnimated");
         }
     }
 
