@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ArrayOfTestWeapon xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TestWeapon>
+    <name>Fireball</name>
+    <damage>10</damage>
+  </TestWeapon>
+  <TestWeapon>
+    <name>Lightning Blast</name>
+    <damage>15</damage>
+  </TestWeapon>
+  <TestWeapon>
+    <name>Basic Sword</name>
+    <damage>5</damage>
+  </TestWeapon>
+</ArrayOfTestWeapon>
