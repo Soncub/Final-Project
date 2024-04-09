@@ -52,9 +52,10 @@ public class PlayerController : MonoBehaviour
 
     private List<TestWeapon> weapons = new List<TestWeapon>
     {
-        new TestWeapon("Fireball", 10),
-        new TestWeapon("Lightning Blast", 15),
-        new TestWeapon("Basic Sword", 5),
+        new TestWeapon("Sword", 10),
+        new TestWeapon("Hammer", 15),
+        new TestWeapon("Bow", 7),
+        new TestWeapon("Bell", 8)
     };
 
     //for Lab Assignment 12. Can probably remove or repurpose later
