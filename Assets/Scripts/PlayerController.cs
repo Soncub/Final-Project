@@ -9,6 +9,7 @@ using System.Text;
 using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
 
+public delegate void EventHandler();
 public class PlayerController : MonoBehaviour
 {
     public float speed = 3.0f;
@@ -36,6 +37,9 @@ public class PlayerController : MonoBehaviour
     private string _textFile;
     private string _xmlWeapons;
     private string _jsonWeapons;
+
+
+    public event EventHandler RestartScene;
 
     [Serializable]
     public struct TestWeapon
@@ -136,17 +140,28 @@ public class PlayerController : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            Time.timeScale = 0f;
-            gameOver.SetActive(true);
-            GameOvered = true;
+            GameOver();
         }
         if (GameOvered && Input.GetKeyDown(KeyCode.R))
         {
-            Time.timeScale = 1f;
-            gameOver.SetActive(false);
-            GameOvered = false;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("SceneAnimated");
+            Restart();
         }
+    }
+
+    void GameOver()
+    {
+        Time.timeScale = 0f;
+        gameOver.SetActive(true);
+        GameOvered = true;
+    }
+
+    void Restart()
+    {
+        Time.timeScale = 1f;
+        gameOver.SetActive(false);
+        GameOvered = false;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("SceneAnimated");
+        RestartScene?.Invoke();
     }
 
     void FixedUpdate()
