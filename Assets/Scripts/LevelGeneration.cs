@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class LevelGeneration : MonoBehaviour
 {
-    public Vector2 stageSize = new Vector2(20, 20);
+    public Vector2 stageSize = new Vector2(30, 30);
     // Total size of stage in X by Y format.
     public Transform tileParent;
     // GameObject that is the parent of the tiles.
     public GameObject tile;
     // GameObject prefab used as a base for the tiles.
+    public GameObject wall;
+    // GameObject prefab used for the wall.
+    public GameObject stone;
+    // GameObject prefab used for the stones.
     public string stageType = "Grass";
     // String for Stage Type. Can be Grass, Mountain, Sand, or Snowy.
-    public int obstacleDensity = 5;
+    public int obstacleDensity = 7;
     // Int for how many obstacles are created. 
-    Color tileColor = new Color();
-    // Color variable for holding the tile color.
+    //Color tileColor = new Color();
+    // Color variable for holding the tile color. [OBSOLETE]
 
     StageLibrary stageLibrary = new StageLibrary();
     // Reference to the stage library class. Holds the dictionary with stage colors.
@@ -25,14 +29,14 @@ public class LevelGeneration : MonoBehaviour
 
     public void Start()
     {
-        GetStageColor();
+        //GetStageColor();
         CreateGround();
         GenerateWalls();
         GenerateObstacles();
     }
     // Runs on startup, runs all methods in order.
 
-    public void GetStageColor()
+    /*public void GetStageColor()
     {
         if(!this.stageLibrary.stageColors.ContainsKey(stageType))
         {
@@ -42,65 +46,70 @@ public class LevelGeneration : MonoBehaviour
             return;
         }
         this.tileColor = stageLibrary.stageColors[stageType];
-    }
+    }*/
     // First, checks if the stage type is in the stage library. If not, defaults the value to grass.
     // Otherwise, it will set the stage color according to the stage type.
+    // [OBSOLETE], color is not needed.
 
     public void CreateGround()
     {
-        for(int i = 0; i < stageSize.y; i++)
+        /*for(int i = 0; i < stageSize.y; i++)
         {
             for(int j = 0; j < stageSize.x; j++)
             {
                 GameObject newTile = Instantiate(this.tile, this.tileParent);
                 newTile.name = "FloorTile";
                 newTile.transform.localPosition = new Vector2(j, i);
-                newTile.GetComponent<SpriteRenderer>().color = tileColor;
             }
         }
-        this.tileParent.position = new Vector2(((stageSize.x / 2) - 0.5f) * -1, ((stageSize.y / 2) - 0.5f) * -1);
+        this.tileParent.position = new Vector2(((stageSize.x / 2) - 0.5f) * -1, ((stageSize.y / 2) - 0.5f) * -1);*/
+
+        GameObject floorTile = Instantiate(this.tile, this.tileParent);
+        floorTile.name = "FloorTile";
+        floorTile.GetComponent<SpriteRenderer>().size = new Vector2(stageSize.x, stageSize.y);
     }
-    // First, runs the for loops that tile out the stage based on the stage size vector2.
-    // It creates a tile under a parent, names it, moves the local position to be based on j and i in the loops, then sets the color.
-    // After all tiles are created, it centers the stage around (0, 0) by moving the parent.
+    // First, runs the for loops that tile out the stage based on the stage size vector2. [OBSOLETE]
+    // It creates a tile under a parent, names it, moves the local position to be based on j and i in the loops, then sets the color. [OBSOLETE]
+    // After all tiles are created, it centers the stage around (0, 0) by moving the parent. [OBSOLETE]
+    // New Method simply makes a big tile instead of a bajillion. Problem solved!
 
     public void GenerateWalls()
     {
-        GameObject wallTileWest = Instantiate(this.tile, this.tileParent);
+        GameObject wallTileWest = Instantiate(this.wall, this.tileParent);
         wallTileWest.name = "wallTileWest";
-        wallTileWest.transform.position = new Vector2(((stageSize.x / 2) + 0.5f) * -1, 0);
+        wallTileWest.transform.position = new Vector2(((stageSize.x / 2) + 9f) * -1, 0);
         // moves to the left side.
-        wallTileWest.transform.localScale = new Vector2 (1, stageSize.y);
+        wallTileWest.GetComponent<SpriteRenderer>().size = new Vector2 (18, stageSize.y);
         // scales up the y.
-        wallTileWest.GetComponent<SpriteRenderer>().color = Color.black;
         wallTileWest.AddComponent<BoxCollider2D>();
+        wallTileWest.GetComponent<BoxCollider2D>().size = new Vector2 (18, stageSize.y);
 
-        GameObject wallTileEast = Instantiate(this.tile, this.tileParent);
+        GameObject wallTileEast = Instantiate(this.wall, this.tileParent);
         wallTileEast.name = "wallTileEast";
-        wallTileEast.transform.position = new Vector2(((stageSize.x / 2) + 0.5f), 0);
+        wallTileEast.transform.position = new Vector2(((stageSize.x / 2) + 9f), 0);
         // moves to the rght.
-        wallTileEast.transform.localScale = new Vector2 (1, stageSize.y);
+        wallTileEast.GetComponent<SpriteRenderer>().size = new Vector2 (18, stageSize.y);
         // scales up the y.
-        wallTileEast.GetComponent<SpriteRenderer>().color = Color.black;
         wallTileEast.AddComponent<BoxCollider2D>();
+        wallTileEast.GetComponent<BoxCollider2D>().size = new Vector2 (18, stageSize.y);
 
-        GameObject wallTileNorth = Instantiate(this.tile, this.tileParent);
+        GameObject wallTileNorth = Instantiate(this.wall, this.tileParent);
         wallTileNorth.name = "wallTileNorth";
-        wallTileNorth.transform.position = new Vector2(0, ((stageSize.y / 2) + 0.5f));
+        wallTileNorth.transform.position = new Vector2(0, ((stageSize.y / 2) + 5f));
         // moves to the top.
-        wallTileNorth.transform.localScale = new Vector2 (stageSize.x + 2, 1);
+        wallTileNorth.GetComponent<SpriteRenderer>().size = new Vector2 (stageSize.x + 36, 10);
         // scales up the x, adds 2 to create a perfect box.
-        wallTileNorth.GetComponent<SpriteRenderer>().color = Color.black;
         wallTileNorth.AddComponent<BoxCollider2D>();
+        wallTileNorth.GetComponent<BoxCollider2D>().size = new Vector2 (stageSize.x + 36, 10);
 
-        GameObject wallTileSouth = Instantiate(this.tile, this.tileParent);
+        GameObject wallTileSouth = Instantiate(this.wall, this.tileParent);
         wallTileSouth.name = "wallTileSouth";
-        wallTileSouth.transform.position = new Vector2(0, ((stageSize.y / 2) + 0.5f) * -1);
+        wallTileSouth.transform.position = new Vector2(0, ((stageSize.y / 2) + 5f) * -1);
         // moves to the bottom.
-        wallTileSouth.transform.localScale = new Vector2 (stageSize.x + 2, 1);
+        wallTileSouth.GetComponent<SpriteRenderer>().size = new Vector2 (stageSize.x + 36, 10);
         // scales up the x, adds 2 to create a perfect box.
-        wallTileSouth.GetComponent<SpriteRenderer>().color = Color.black;
         wallTileSouth.AddComponent<BoxCollider2D>();
+        wallTileSouth.GetComponent<BoxCollider2D>().size = new Vector2 (stageSize.x + 36, 10);
     }
     // Creates walls in each cardinal direction.
     // First, the game object is created, then named, moved based on stage size, scaled based on stage size, has it's color changed to black, and adds a box colider 2D.
@@ -111,12 +120,12 @@ public class LevelGeneration : MonoBehaviour
         {
             for(int i = 0; i < obstacleDensity; i++)
             {
-               GameObject obstacle = this.obstacleLibrary.CreateStoneObstacles(this.tile);
+               GameObject obstacle = this.obstacleLibrary.CreateStoneObstacles(this.stone);
                obstacle.transform.position = new Vector2 (Random.Range(((stageSize.x / 2) - 1) * -1, (stageSize.x / 2) -1), Random.Range(((stageSize.y / 2) - 1) * -1, (stageSize.y / 2) - 1));
             }
         }
 
-        if(stageType == "Sand")
+        /*if(stageType == "Sand")
         {
             for(int i = 0; i < obstacleDensity; i++)
             {
@@ -132,7 +141,7 @@ public class LevelGeneration : MonoBehaviour
                GameObject obstacle = this.obstacleLibrary.CreateTreeObstacles(this.tile);
                obstacle.transform.position = new Vector2 (Random.Range(((stageSize.x / 2) - 1) * -1, (stageSize.x / 2) -1), Random.Range(((stageSize.y / 2) - 1) * -1, (stageSize.y / 2) - 1));
             }
-        }
+        }*/
     }
     // Checks for the stage type, and generates the appropriate obstacles based on that. Moves them to random locations within the bounds of the stage.
 }

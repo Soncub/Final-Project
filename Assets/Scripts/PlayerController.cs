@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
+    bool isFacingLeft = true;
 
     Animator animator;
 
@@ -179,6 +180,25 @@ public class PlayerController : MonoBehaviour
         position.y = position.y + speed * vertical * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
+
+        if (isFacingLeft && horizontal > 0)
+        {
+            FlipSprite();
+        }
+        else if (!isFacingLeft && horizontal < 0)
+        {
+            FlipSprite();
+        }
+
+    }
+
+    public void FlipSprite()
+    {
+        isFacingLeft = !isFacingLeft;
+
+        Vector3 playerScale = transform.localScale;
+        playerScale.x *= -1;
+        transform.localScale = playerScale;
     }
 
     public void ChangeHealth(int amount)

@@ -12,4 +12,5 @@ public class StageLibrary
         { "Snowy", Color.white }
     };
     // This dictionary houses colors to use based on stage type.
+    // [OBSOLETE], no need for this script as we do not need colors anymore.
 }

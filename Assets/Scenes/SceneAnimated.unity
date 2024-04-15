@@ -379,11 +379,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c5e06c3f73dca4399178b78584a57a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageSize: {x: 20, y: 20}
+  stageSize: {x: 40, y: 40}
   tileParent: {fileID: 2101215069}
-  tile: {fileID: 6284277297067842064, guid: 1b23f6bb959aac5499d4a34656cf1f98, type: 3}
+  tile: {fileID: 6284277297067842064, guid: 0b8cbe357a7b5a94f9ce0319f5b7fbd2, type: 3}
+  wall: {fileID: 8567958913786717361, guid: 69033ee9ebd96f142a191b27f44a326f, type: 3}
+  stone: {fileID: 6427986670589454980, guid: 2efcf6c92993f72419cef5ed50c739b0, type: 3}
   stageType: Grass
-  obstacleDensity: 5
+  obstacleDensity: 10
 --- !u!4 &168630898
 Transform:
   m_ObjectHideFlags: 0
@@ -583,7 +585,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -959,6 +961,7 @@ MonoBehaviour:
   playercontroller: {fileID: 0}
   scoreText: {fileID: 1455762514}
   healthText: {fileID: 1405604354}
+  health: 0
 --- !u!114 &1405604354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,6 +1073,7 @@ MonoBehaviour:
   playercontroller: {fileID: 0}
   scoreText: {fileID: 1455762514}
   healthText: {fileID: 1405604354}
+  health: 0
 --- !u!222 &1455762516
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1241,6 +1245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin
       objectReference: {fileID: 0}
+    - target: {fileID: 455855683169171490, guid: 7b2d1e2e34230a146a3531c8d021bd73, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b2d1e2e34230a146a3531c8d021bd73, type: 3}
 --- !u!1001 &2720638081349462981
@@ -1297,6 +1305,10 @@ PrefabInstance:
     - target: {fileID: 6126888329320056218, guid: d1c96e7f6adca5247ac20d6651159d8d, type: 3}
       propertyPath: m_Name
       value: GreaterGoblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126888329320056218, guid: d1c96e7f6adca5247ac20d6651159d8d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7336143671324300411, guid: d1c96e7f6adca5247ac20d6651159d8d, type: 3}
       propertyPath: damage
@@ -1359,6 +1371,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf
       objectReference: {fileID: 0}
+    - target: {fileID: 3770633689365602754, guid: 8ab81809586c606488070e834b5975b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ab81809586c606488070e834b5975b3, type: 3}
 --- !u!1001 &5040428239019787732
@@ -1371,6 +1387,10 @@ PrefabInstance:
     - target: {fileID: 5040428239101011528, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
       propertyPath: m_Name
       value: Gigas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5040428239101011528, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5040428239101011530, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
       propertyPath: damage
@@ -1480,6 +1500,10 @@ PrefabInstance:
     - target: {fileID: 6331827530658139275, guid: ba62c9d4cb1b4c94ea4500d6aa4e78e2, type: 3}
       propertyPath: m_Name
       value: Werewolf
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331827530658139275, guid: ba62c9d4cb1b4c94ea4500d6aa4e78e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6331827530658139271, guid: ba62c9d4cb1b4c94ea4500d6aa4e78e2, type: 3}

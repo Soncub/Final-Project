@@ -8,14 +8,12 @@ public class ObstacleLibrary
     {
         GameObject newObstacle = GameObject.Instantiate(tileBase);
         newObstacle.name = "Stone";
-        newObstacle.GetComponent<SpriteRenderer>().color = Color.grey;
-        newObstacle.transform.localScale = new Vector2(0.7f, 0.4f);
         newObstacle.AddComponent<BoxCollider2D>();
         return newObstacle;
     }
     // Generates "stone" obstacles. Thin and grey. Meant for Grass.
 
-    public GameObject CreateCactusObstacles(GameObject tileBase)
+    /*public GameObject CreateCactusObstacles(GameObject tileBase)
     {
         GameObject newObstacle = GameObject.Instantiate(tileBase);
         newObstacle.name = "Cactus";
@@ -35,5 +33,6 @@ public class ObstacleLibrary
         newObstacle.AddComponent<BoxCollider2D>();
         return newObstacle;
     }
-    // Generates "tree" obstacles. Meant for Mountain and Snowy.
+    // Generates "tree" obstacles. Meant for Mountain and Snowy.*/
+    // [OBSOLETE], We only use stones with the one available level theme.
 }
