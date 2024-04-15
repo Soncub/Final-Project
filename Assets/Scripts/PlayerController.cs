@@ -15,10 +15,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 3.0f;
 
     public int maxHealth = 5;
+    public int currentHealth;
     public float timeInvincible = 2.0f;
-
-    public int health { get { return currentHealth; } }
-    int currentHealth;
 
     bool isInvincible;
     float invincibleTimer;
@@ -38,8 +36,8 @@ public class PlayerController : MonoBehaviour
     private string _xmlWeapons;
     private string _jsonWeapons;
 
-
-    public event EventHandler RestartScene;
+    public delegate void DeathEventHandler();
+    public event DeathEventHandler OnPlayerDeath;
 
     [Serializable]
     public struct TestWeapon
@@ -67,7 +65,6 @@ public class PlayerController : MonoBehaviour
     {
         _dataPath = Application.persistentDataPath + "/Player_Data/";
         Debug.Log(_dataPath);
-        _textFile = _dataPath + "Save_Data.txt";
 
         if (Directory.Exists(_dataPath))
         {
@@ -80,42 +77,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("New Directory Created!");
         }
 
-        if (File.Exists(_textFile))
-        {
-            Debug.Log("File already exists.");
-        }
-
-        else
-        {
-            File.WriteAllText(_textFile, "<SAVE DATA>\n");
-            Debug.Log("New File Created!");
-        }
-
-        _xmlWeapons = _dataPath + "Weapons.xml";
-
-        var xmlSerializer = new XmlSerializer(typeof(List<TestWeapon>));
-
-        using (FileStream stream = File.Create(_xmlWeapons))
-        {
-            xmlSerializer.Serialize(stream, weapons);
-        }
-
-        Debug.Log("Created XML File.");
-
-        _jsonWeapons = _dataPath + "Weapons.json";
-
-        string jsonString1 = JsonUtility.ToJson(weapons[0], true);
-        string jsonString2 = JsonUtility.ToJson(weapons[1], true);
-        string jsonString3 = JsonUtility.ToJson(weapons[2], true);
-
-        using (StreamWriter stream = File.CreateText(_jsonWeapons))
-        {
-            stream.WriteLine(jsonString1);
-            stream.WriteLine(jsonString2);
-            stream.WriteLine(jsonString3);
-        }
-
-        Debug.Log("Created JSON File.");
     }
 
     // Start is called before the first frame update
@@ -131,6 +92,16 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Save();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Load();
+        }
 
         if (isInvincible)
         {
@@ -153,6 +124,7 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0f;
         gameOver.SetActive(true);
         GameOvered = true;
+        OnPlayerDeath?.Invoke();
     }
 
     void Restart()
@@ -161,7 +133,42 @@ public class PlayerController : MonoBehaviour
         gameOver.SetActive(false);
         GameOvered = false;
         UnityEngine.SceneManagement.SceneManager.LoadScene("SceneAnimated");
-        RestartScene?.Invoke();
+    }
+
+    void Save()
+    {
+        Vector3 playerPosition = transform.position;
+        int playerHealth = currentHealth;
+
+        SaveData saveData = new SaveData
+        {
+            health = playerHealth,
+            playerPosition = playerPosition,
+        };
+
+        string json = JsonUtility.ToJson(saveData);
+        File.WriteAllText(_dataPath + "save.txt", json);
+    }
+
+    void Load()
+    {
+        try
+        {
+            string saveString = File.ReadAllText(_dataPath + "save.txt");
+
+            SaveData load = JsonUtility.FromJson<SaveData>(saveString);
+            
+            transform.position = load.playerPosition;
+            currentHealth = load.health;
+            
+            UIDisplay.instance.health = currentHealth;
+            UIDisplay.instance.UpdateHealth(0);
+        }
+
+        catch (FileNotFoundException)
+        {
+            Debug.Log("Save file not found.");
+        }
     }
 
     void FixedUpdate()
@@ -185,7 +192,7 @@ public class PlayerController : MonoBehaviour
             isInvincible = true;
             invincibleTimer = timeInvincible;
             //UI updating Health
-            UIDisplay.instance.RemoveHealth();
+            UIDisplay.instance.UpdateHealth(amount);
             //UI updating Points
             UIDisplay.instance.AddPoint();
         }
@@ -193,4 +200,10 @@ public class PlayerController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
     }
+}
+
+public class SaveData
+{
+    public int health;
+    public Vector3 playerPosition;
 }

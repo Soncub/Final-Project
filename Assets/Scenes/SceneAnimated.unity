@@ -848,7 +848,7 @@ PrefabInstance:
       objectReference: {fileID: 641411257}
     - target: {fileID: 1447799265, guid: 141dced1f1c7aec4fb7299edaac1f4a6, type: 3}
       propertyPath: maxHealth
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4735285730339849414, guid: 141dced1f1c7aec4fb7299edaac1f4a6, type: 3}
       propertyPath: m_RootOrder
@@ -1298,6 +1298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreaterGoblin
       objectReference: {fileID: 0}
+    - target: {fileID: 7336143671324300411, guid: d1c96e7f6adca5247ac20d6651159d8d, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c96e7f6adca5247ac20d6651159d8d, type: 3}
 --- !u!1001 &3770633688933030103
@@ -1367,6 +1371,10 @@ PrefabInstance:
     - target: {fileID: 5040428239101011528, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
       propertyPath: m_Name
       value: Gigas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5040428239101011530, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
+      propertyPath: damage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5040428239101011575, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
       propertyPath: m_RootOrder
@@ -1464,6 +1472,10 @@ PrefabInstance:
     - target: {fileID: 6331827530658139266, guid: ba62c9d4cb1b4c94ea4500d6aa4e78e2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331827530658139268, guid: ba62c9d4cb1b4c94ea4500d6aa4e78e2, type: 3}
+      propertyPath: damage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6331827530658139275, guid: ba62c9d4cb1b4c94ea4500d6aa4e78e2, type: 3}
       propertyPath: m_Name
