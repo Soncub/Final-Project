@@ -1,14 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] Button _startGame;
 
+    void Start()
+    {
+        _startGame.onClick.AddListener(StartGame);
+    }
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Pause();
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (GameIsPaused)
@@ -34,5 +44,9 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+    }
+    private void StartGame()
+    {
+        ScenesManager.Instance.LoadScene(ScenesManager.Scene.StartMenu);
     }
 }
