@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 1f;
         gameOver.SetActive(false);
         GameOvered = false;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SceneAnimated");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScreen");
     }
 
     void Save()
