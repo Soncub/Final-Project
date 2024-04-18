@@ -13,11 +13,9 @@ public delegate void EventHandler();
 public class PlayerController : MonoBehaviour
 {
     public float speed = 3.0f;
-
     public int maxHealth = 5;
     public int currentHealth;
     public float timeInvincible = 2.0f;
-
     bool isInvincible;
     float invincibleTimer;
 
@@ -25,17 +23,19 @@ public class PlayerController : MonoBehaviour
     float horizontal;
     float vertical;
     bool isFacingLeft = true;
-
     Animator animator;
+
+    GameObject attackArea;
+    GameObject effect;
+    bool attacking = false;
+    float timeToAttack = 0.25f;
+    float timer = 0f;
 
     [SerializeField] GameObject gameOver;
     public static bool GameOvered = false;
 
     //the following variables are only for Lab Assignment 12.
     private string _dataPath;
-    private string _textFile;
-    private string _xmlWeapons;
-    private string _jsonWeapons;
 
     public delegate void DeathEventHandler();
     public event DeathEventHandler OnPlayerDeath;
@@ -87,6 +87,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         Time.timeScale = 1;
+
+        attackArea = transform.GetChild(0).gameObject;
+        effect = transform.GetChild(1).gameObject;
     }
 
     // Update is called once per frame
@@ -94,6 +97,24 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        }
+
+        if (attacking)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= timeToAttack)
+            {
+                timer = 0;
+                attacking = false;
+                attackArea.SetActive(attacking);
+                effect.SetActive(attacking);
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.V))
         {
@@ -200,6 +221,13 @@ public class PlayerController : MonoBehaviour
         Vector3 playerScale = transform.localScale;
         playerScale.x *= -1;
         transform.localScale = playerScale;
+    }
+
+    void Attack()
+    {
+        attacking = true;
+        attackArea.SetActive(attacking);
+        effect.SetActive(attacking);
     }
 
     public void ChangeHealth(int amount)
