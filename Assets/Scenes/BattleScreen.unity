@@ -459,6 +459,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bfde7c8db779d429ad880808f4dc89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &319694106 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5140480575158312231, guid: 141dced1f1c7aec4fb7299edaac1f4a6, type: 3}
+  m_PrefabInstance: {fileID: 1237748636}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &319694108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319694106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9c2ee8cabc08e47aa716d6d6b9cb59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &466817748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,21 +1047,9 @@ PrefabInstance:
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 641411257}
-    - target: {fileID: 1447799265, guid: 141dced1f1c7aec4fb7299edaac1f4a6, type: 3}
-      propertyPath: maxHealth
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4735285730339849414, guid: 141dced1f1c7aec4fb7299edaac1f4a6, type: 3}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735285730339849414, guid: 141dced1f1c7aec4fb7299edaac1f4a6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735285730339849414, guid: 141dced1f1c7aec4fb7299edaac1f4a6, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4735285730339849414, guid: 141dced1f1c7aec4fb7299edaac1f4a6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1086,12 +1091,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7509532513669861562, guid: 141dced1f1c7aec4fb7299edaac1f4a6, type: 3}
-      propertyPath: m_Name
-      value: Player
+    - target: {fileID: 5140480575158312231, guid: 141dced1f1c7aec4fb7299edaac1f4a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7509532513669861562, guid: 141dced1f1c7aec4fb7299edaac1f4a6, type: 3}
-      propertyPath: m_TagString
+      propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1561,6 +1566,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4153054578740192187, guid: 7b2d1e2e34230a146a3531c8d021bd73, type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153054578740192187, guid: 7b2d1e2e34230a146a3531c8d021bd73, type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b2d1e2e34230a146a3531c8d021bd73, type: 3}
 --- !u!1001 &2720638081349462981
@@ -1687,6 +1700,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5997113497088331936, guid: 8ab81809586c606488070e834b5975b3, type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997113497088331936, guid: 8ab81809586c606488070e834b5975b3, type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ab81809586c606488070e834b5975b3, type: 3}
 --- !u!1001 &5040428239019787732
@@ -1707,6 +1728,14 @@ PrefabInstance:
     - target: {fileID: 5040428239101011530, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
       propertyPath: damage
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5040428239101011530, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5040428239101011530, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5040428239101011575, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
       propertyPath: m_RootOrder
