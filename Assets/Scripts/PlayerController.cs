@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     bool isFacingLeft = true;
     Animator animator;
 
-    GameObject attackArea;
-    GameObject effect;
+    public GameObject attackArea;
+    public GameObject effect;
     bool attacking = false;
     float timeToAttack = 0.25f;
     float timer = 0f;
@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
     private List<TestWeapon> weapons = new List<TestWeapon>
     {
         new TestWeapon("Sword", 10),
-        new TestWeapon("Hammer", 15),
         new TestWeapon("Bow", 7),
         new TestWeapon("Bell", 8)
     };
@@ -88,8 +87,8 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         Time.timeScale = 1;
 
-        attackArea = transform.GetChild(0).gameObject;
-        effect = transform.GetChild(1).gameObject;
+        attackArea = transform.Find("SwordAttack").gameObject;
+        effect = transform.Find("Effect").gameObject;
     }
 
     // Update is called once per frame
