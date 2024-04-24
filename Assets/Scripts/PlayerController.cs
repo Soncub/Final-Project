@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         Time.timeScale = 1;
 
-        attackArea = transform.Find("SwordAttack").gameObject;
+        attackArea = transform.Find("BellAttack").gameObject;
         effect = transform.Find("Effect").gameObject;
     }
 
