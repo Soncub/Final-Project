@@ -1893,7 +1893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3770633689365602754, guid: 8ab81809586c606488070e834b5975b3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5997113497088331936, guid: 8ab81809586c606488070e834b5975b3, type: 3}
       propertyPath: health
@@ -1937,7 +1937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5040428239101011528, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5040428239101011530, guid: 3fd5c057c99deaa4cb0d546746f0fc24, type: 3}
       propertyPath: damage
@@ -2222,5 +2222,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 6566569122032163394, guid: 26e38f8cd23ad4c6da8aa1a37dfd4cfd, type: 3}
   firePoint: {fileID: 1598186402}
-  bulletSpeed: 100
-  damage: 1
+  bulletSpeed: 50

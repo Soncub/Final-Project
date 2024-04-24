@@ -10,7 +10,6 @@ public class Staff : MonoBehaviour
 
     Vector2 lookDirection;
     float lookAngle;
-    public int damage = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,15 +30,6 @@ public class Staff : MonoBehaviour
             bulletClone.transform.position = firePoint.position;
             bulletClone.transform.rotation = Quaternion.Euler(0, 0, lookAngle);
             bulletClone.GetComponent<Rigidbody2D>().velocity = firePoint.right * bulletSpeed;
-        }
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        EnemyDamage enemy = other.GetComponent<EnemyDamage>();
-
-        if (enemy != null)
-        {
-            enemy.ChangeHealth(-damage);
         }
     }
 }
