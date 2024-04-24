@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5408250244528269035}
   - component: {fileID: 5154084746102010994}
   m_Layer: 6
-  m_Name: AttackArea
+  m_Name: SwordAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 2278365452225829314}
   - component: {fileID: 1742768674278877958}
   m_Layer: 0
-  m_Name: Effect
+  m_Name: SwordEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
