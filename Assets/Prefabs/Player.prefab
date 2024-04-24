@@ -174,7 +174,7 @@ Transform:
   m_GameObject: {fileID: 7509532513669861562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5408250244528269035}
@@ -250,6 +250,8 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   timeInvincible: 2
+  attackArea: {fileID: 0}
+  effect: {fileID: 0}
   gameOver: {fileID: 0}
 --- !u!50 &2457119090979741613
 Rigidbody2D:
