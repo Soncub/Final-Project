@@ -40,28 +40,6 @@ public class PlayerController : MonoBehaviour
     public delegate void DeathEventHandler();
     public event DeathEventHandler OnPlayerDeath;
 
-    [Serializable]
-    public struct TestWeapon
-    {
-        public string name;
-        public int damage;
-
-        public TestWeapon(string name, int damage)
-        {
-            this.name = name;
-            this.damage = damage;
-        }
-    }
-
-    private List<TestWeapon> weapons = new List<TestWeapon>
-    {
-        new TestWeapon("Sword", 10),
-        new TestWeapon("Hammer", 15),
-        new TestWeapon("Bow", 7),
-        new TestWeapon("Bell", 8)
-    };
-
-    //for Lab Assignment 12. Can probably remove or repurpose later
     void Awake()
     {
         _dataPath = Application.persistentDataPath + "/Player_Data/";
