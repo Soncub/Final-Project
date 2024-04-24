@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 using System.Text;
 using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
+using UnityEditor.Experimental.GraphView;
 
 public delegate void EventHandler();
 public class PlayerController : MonoBehaviour
@@ -30,37 +31,20 @@ public class PlayerController : MonoBehaviour
     bool attacking = false;
     float timeToAttack = 0.25f;
     float timer = 0f;
+    public GameObject fireball;
+    public Transform firePoint;
+    public float bulletSpeed = 50;
+    Vector2 lookDirection;
+    float lookAngle;
 
     [SerializeField] GameObject gameOver;
     public static bool GameOvered = false;
 
-    //the following variables are only for Lab Assignment 12.
     private string _dataPath;
 
     public delegate void DeathEventHandler();
     public event DeathEventHandler OnPlayerDeath;
 
-    [Serializable]
-    public struct TestWeapon
-    {
-        public string name;
-        public int damage;
-
-        public TestWeapon(string name, int damage)
-        {
-            this.name = name;
-            this.damage = damage;
-        }
-    }
-
-    private List<TestWeapon> weapons = new List<TestWeapon>
-    {
-        new TestWeapon("Sword", 10),
-        new TestWeapon("Bow", 7),
-        new TestWeapon("Bell", 8)
-    };
-
-    //for Lab Assignment 12. Can probably remove or repurpose later
     void Awake()
     {
         _dataPath = Application.persistentDataPath + "/Player_Data/";
@@ -87,8 +71,24 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         Time.timeScale = 1;
 
-        attackArea = transform.Find("BellAttack").gameObject;
-        effect = transform.Find("Effect").gameObject;
+        if (WeaponsMenuScript.WeaponType == 1)
+        {
+            attackArea = transform.Find("SwordAttack").gameObject;
+            effect = transform.Find("SwordEffect").gameObject;
+        }
+
+        else if (WeaponsMenuScript.WeaponType == 3)
+        {
+            attackArea = transform.Find("BellAttack").gameObject;
+            effect = transform.Find("BellEffect").gameObject;
+        }
+
+        else 
+        {
+            attackArea = transform.Find("SwordAttack").gameObject;
+            effect = transform.Find("SwordEffect").gameObject;
+        }
+
     }
 
     // Update is called once per frame
@@ -102,17 +102,33 @@ public class PlayerController : MonoBehaviour
             Attack();
         }
 
-        if (attacking)
+        if (WeaponsMenuScript.WeaponType == 2)
         {
-            timer += Time.deltaTime;
+            lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            lookDirection = new Vector2(lookDirection.x - transform.position.x, lookDirection.y - transform.position.y);
+            lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+            firePoint.rotation = Quaternion.Euler(0,0, lookAngle);
+        }
 
-            if (timer >= timeToAttack)
+        if (WeaponsMenuScript.WeaponType == 1 || WeaponsMenuScript.WeaponType == 3)
+        {
+            if (attacking)
             {
-                timer = 0;
-                attacking = false;
-                attackArea.SetActive(attacking);
-                effect.SetActive(attacking);
+                timer += Time.deltaTime;
+
+                if (timer >= timeToAttack)
+                {
+                    timer = 0;
+                    attacking = false;
+                    attackArea.SetActive(attacking);
+                    effect.SetActive(attacking);
+                }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            UseSpell();
         }
 
         if (Input.GetKeyDown(KeyCode.V))
@@ -224,9 +240,38 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        attacking = true;
-        attackArea.SetActive(attacking);
-        effect.SetActive(attacking);
+        if (WeaponsMenuScript.WeaponType == 1 || WeaponsMenuScript.WeaponType == 3)
+        {
+            attacking = true;
+            attackArea.SetActive(attacking);
+            effect.SetActive(attacking);
+        }
+
+        else
+        {
+            GameObject bulletClone = Instantiate(fireball);
+            bulletClone.transform.position = firePoint.position;
+            bulletClone.transform.rotation = Quaternion.Euler(0, 0, lookAngle);
+            bulletClone.GetComponent<Rigidbody2D>().velocity = firePoint.right * bulletSpeed;
+        }
+    }
+
+    void UseSpell()
+    {
+        if (WeaponsMenuScript.SpellType == 1)
+        {
+            Debug.Log("Protect");
+        }
+
+        else if (WeaponsMenuScript.SpellType == 2)
+        {
+            Debug.Log("Regen");
+        }
+
+        else 
+        {
+            Debug.Log("Saber");
+        }
     }
 
     public void ChangeHealth(int amount)
