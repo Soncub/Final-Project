@@ -13,20 +13,23 @@ using UnityEditor.Experimental.GraphView;
 public delegate void EventHandler();
 public class PlayerController : MonoBehaviour
 {
+    //default player stats
     public float speed = 3.0f;
-    public int maxHealth = 5;
-    public int currentHealth;
+    public float maxHealth = 5.0f;
+    public float currentHealth;
     public float timeInvincible = 2.0f;
     bool isInvincible;
     float invincibleTimer;
     public GameObject player;
 
+    //variables for Animator
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
     bool isFacingLeft = true;
     Animator animator;
 
+    //variables for weapon attack generation
     public GameObject attackArea;
     public GameObject effect;
     bool attacking = false;
@@ -38,13 +41,19 @@ public class PlayerController : MonoBehaviour
     Vector2 lookDirection;
     float lookAngle;
 
+    //variables for inital spell stat changes
+    float protectBuff = 1.0f;
+    float pointIncreasePerSecond = 1.0f;
+    float saberBuff = 1.2f;
+
+    //Game Over event
     [SerializeField] GameObject gameOver;
     public static bool GameOvered = false;
-
-    private string _dataPath;
-
     public delegate void DeathEventHandler();
     public event DeathEventHandler OnPlayerDeath;
+
+    //directory file path
+    private string _dataPath;
 
     void Awake()
     {
@@ -71,7 +80,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         Time.timeScale = 1;
-        player = transform.Find("Player").gameObject;
 
         if (WeaponsMenuScript.WeaponType == 1)
         {
@@ -90,21 +98,9 @@ public class PlayerController : MonoBehaviour
             attackArea = transform.Find("SwordAttack").gameObject;
             effect = transform.Find("SwordEffect").gameObject;
         }
+
+        UseSpell();
         
-        if (WeaponsMenuScript.SpellType == 2)
-        {
-            player.GetComponent<HealthRegeneration>().enabled = true;
-        }
-
-        else if (WeaponsMenuScript.SpellType == 3)
-        {
-            
-        }
-
-        else
-        {
-            
-        }
     }
 
     // Update is called once per frame
@@ -142,9 +138,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (WeaponsMenuScript.SpellType == 2)
         {
-            UseSpell();
+            currentHealth += pointIncreasePerSecond * Time.deltaTime;
+
+            if (currentHealth >= maxHealth)
+            {
+                currentHealth = maxHealth;
+
+                UIDisplay.instance.health = currentHealth;
+                UIDisplay.instance.UpdateHealth(0);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.V))
@@ -192,7 +196,7 @@ public class PlayerController : MonoBehaviour
     void Save()
     {
         Vector3 playerPosition = transform.position;
-        int playerHealth = currentHealth;
+        float playerHealth = currentHealth;
 
         SaveData saveData = new SaveData
         {
@@ -276,21 +280,34 @@ public class PlayerController : MonoBehaviour
     {
         if (WeaponsMenuScript.SpellType == 1)
         {
-            Debug.Log("Protect");
+            protectBuff = 0.8f;
         }
 
-        else if (WeaponsMenuScript.SpellType == 2)
+        else if (WeaponsMenuScript.SpellType == 3)
         {
-            Debug.Log("Regen");
+            if (WeaponsMenuScript.WeaponType == 1)
+            {
+               attackArea.GetComponent<Sword>().damage = attackArea.GetComponent<Sword>().damage * saberBuff;
+            }
+
+            else if (WeaponsMenuScript.WeaponType == 2)
+            {
+                fireball.GetComponent<Fireball>().damage = fireball.GetComponent<Fireball>().damage * saberBuff;
+            }
+
+            else 
+            {
+                attackArea.GetComponent<Bell>().damage = attackArea.GetComponent<Bell>().damage * saberBuff;
+            }
         }
 
         else 
         {
-            Debug.Log("Saber");
+            Debug.Log("Regen");
         }
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(float amount)
     {
         if (amount < 0)
         {
@@ -301,18 +318,23 @@ public class PlayerController : MonoBehaviour
             isInvincible = true;
             invincibleTimer = timeInvincible;
             //UI updating Health
-            UIDisplay.instance.UpdateHealth(amount);
+            UIDisplay.instance.UpdateHealth(amount * protectBuff);
             //UI updating Points
             UIDisplay.instance.AddPoint();
         }
 
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth + (amount * protectBuff), 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
+    }
+
+    public void Regen()
+    {
+        this.ChangeHealth(1.0f);
     }
 }
 
 public class SaveData
 {
-    public int health;
+    public float health;
     public Vector3 playerPosition;
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    public int damage;
-    public int health;
-    public int maxHealth;
+    public float damage;
+    public float health;
+    public float maxHealth;
 
     void Update()
     {
@@ -27,7 +27,7 @@ public class EnemyDamage : MonoBehaviour
         }
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(float amount)
     {
         health = Mathf.Clamp(health + amount, 0, maxHealth);
         Debug.Log("Enemy Health: " + health + "/" + maxHealth);

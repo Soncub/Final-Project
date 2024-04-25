@@ -15,7 +15,7 @@ public class UIDisplay : MonoBehaviour
     public Text healthText;
 
     int score = 0;
-    public int health = 0;
+    public float health = 0.0f;
     // Start is called before the first frame update
 
     private void Awake()
@@ -36,7 +36,7 @@ public class UIDisplay : MonoBehaviour
         scoreText.text = "SCORE " + score.ToString();
     }
 
-    public void UpdateHealth(int amount)
+    public void UpdateHealth(float amount)
     {
         health = health + amount;
         healthText.text = "Health " + health.ToString();

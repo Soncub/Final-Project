@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bell : MonoBehaviour
 {
-    public int damage = 2;
+    public float damage = 5;
 
     void OnTriggerEnter2D(Collider2D other)
     {
