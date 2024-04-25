@@ -763,6 +763,7 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   timeInvincible: 2
+  player: {fileID: 0}
   attackArea: {fileID: 0}
   effect: {fileID: 0}
   fireball: {fileID: 6566569122032163394, guid: 26e38f8cd23ad4c6da8aa1a37dfd4cfd, type: 3}
@@ -2361,6 +2362,7 @@ GameObject:
   - component: {fileID: 4735285729136250714}
   - component: {fileID: 2547354355326983928}
   - component: {fileID: 529343101}
+  - component: {fileID: 9026270721359513826}
   - component: {fileID: 2457119089784198193}
   - component: {fileID: 7640614606161912061}
   - component: {fileID: 9026270721359513825}
@@ -2408,3 +2410,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9026270721359513826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7509532514890767142}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ea1a1e6aa554808b876de0e3a737b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointIncreasePerSecond: 0
+  currentHealth: 0
+  maxHealth: 0

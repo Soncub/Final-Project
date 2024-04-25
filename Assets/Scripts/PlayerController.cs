@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float timeInvincible = 2.0f;
     bool isInvincible;
     float invincibleTimer;
+    public GameObject player;
 
     Rigidbody2D rigidbody2d;
     float horizontal;
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         Time.timeScale = 1;
+        player = transform.Find("Player").gameObject;
 
         if (WeaponsMenuScript.WeaponType == 1)
         {
@@ -88,7 +90,21 @@ public class PlayerController : MonoBehaviour
             attackArea = transform.Find("SwordAttack").gameObject;
             effect = transform.Find("SwordEffect").gameObject;
         }
+        
+        if (WeaponsMenuScript.SpellType == 2)
+        {
+            player.GetComponent<HealthRegeneration>().enabled = true;
+        }
 
+        else if (WeaponsMenuScript.SpellType == 3)
+        {
+            
+        }
+
+        else
+        {
+            
+        }
     }
 
     // Update is called once per frame
