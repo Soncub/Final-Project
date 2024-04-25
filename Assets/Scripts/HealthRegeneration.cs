@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class HealthRegeneration : MonoBehaviour
 {
+    public PlayerController playerHealth;
     public int pointIncreasePerSecond;
-    public float currentHealth;
-    public float maxHealth;
 
     void Start()
     {
+        playerHealth = this.GetComponent<PlayerController>();
         pointIncreasePerSecond = 1;
     }
 
     void Update()
     {
-        //this.GetComponent<PlayerController>().currentHealth;
-        //this.GetComponent<PlayerController>().maxHealth;
-        currentHealth += pointIncreasePerSecond * Time.deltaTime;
+        playerHealth.currentHealth += pointIncreasePerSecond * Time.deltaTime;
 
-        if(currentHealth >= maxHealth)
+        if (playerHealth.currentHealth >= playerHealth.maxHealth)
         {
-            currentHealth = maxHealth;
+            playerHealth.currentHealth = playerHealth.maxHealth;
         }
     }
 }
