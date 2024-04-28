@@ -17,11 +17,7 @@ public class PauseMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && UpgradeMenu.upgradeMenu == false)
-        {
-            Pause();
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && UpgradeMenu.upgradeMenu == false)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape)) && UpgradeMenu.isMenuActive == false)
         {
             if (GameIsPaused)
             {

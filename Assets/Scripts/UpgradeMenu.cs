@@ -11,17 +11,26 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField] Button regenButton;
     [SerializeField] Button saberButton;
     public PlayerController player;
+    public static bool isMenuActive = false;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U) && PauseMenu.GameIsPaused == false)
+        {
+            BringMenuUp();
+        }
     }
     public void BringMenuUp()
     {
         Cursor.lockState = CursorLockMode.None;
         upgradeMenu.SetActive(true);
         Time.timeScale = 0f;
-
+        isMenuActive = true;
     }
     public void UpgradeProtect()
     {
@@ -31,6 +40,7 @@ public class UpgradeMenu : MonoBehaviour
         Time.timeScale = 1f;
         player.protectBuff -= 0.1f;
         Debug.Log("Worked");
+        isMenuActive = false;
     }
     public void UpgradeRegen()
     {
@@ -40,6 +50,7 @@ public class UpgradeMenu : MonoBehaviour
         Time.timeScale = 1f;
         player.pointIncreasePerSecond += 0.1f;
         Debug.Log("Worked");
+        isMenuActive = false;
     }
     public void UpgradeSaber()
     {
@@ -49,5 +60,6 @@ public class UpgradeMenu : MonoBehaviour
         Time.timeScale = 1f;
         player.saberBuff += 0.1f;
         Debug.Log("Worked");
+        isMenuActive = false;
     }
 }
