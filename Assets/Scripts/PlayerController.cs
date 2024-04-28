@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     public GameObject attackArea;
     public GameObject effect;
     bool attacking = false;
-    float timeToAttack = 0.25f;
+    public float timeToAttack = 0.25f;
     float timer = 0f;
     public GameObject fireball;
     public Transform firePoint;
@@ -42,9 +42,9 @@ public class PlayerController : MonoBehaviour
     float lookAngle;
 
     //variables for inital spell stat changes
-    float protectBuff = 1.0f;
-    float pointIncreasePerSecond = 1.0f;
-    float saberBuff = 1.2f;
+    public float protectBuff = 1.0f;
+    public float pointIncreasePerSecond = 0.0f;
+    public float saberBuff = 1.0f;
 
     //Game Over event
     [SerializeField] GameObject gameOver;
@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviour
 
         if (WeaponsMenuScript.SpellType == 2)
         {
+            pointIncreasePerSecond = 0.5f;
             currentHealth += pointIncreasePerSecond * Time.deltaTime;
 
             if (currentHealth >= maxHealth)
@@ -285,6 +286,8 @@ public class PlayerController : MonoBehaviour
 
         else if (WeaponsMenuScript.SpellType == 3)
         {
+            saberBuff = 1.1f;
+
             if (WeaponsMenuScript.WeaponType == 1)
             {
                attackArea.GetComponent<Sword>().damage = attackArea.GetComponent<Sword>().damage * saberBuff;
