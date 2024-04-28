@@ -6,23 +6,17 @@ using UnityEngine.UI;
 public class UpgradeMenu : MonoBehaviour
 {
     public AudioClip triggerclip;
-    [SerializeField] GameObject upgradeMenu;
+    public GameObject upgradeMenu;
     [SerializeField] Button protectButton;
     [SerializeField] Button regenButton;
     [SerializeField] Button saberButton;
-    public PlayerController playerController;
-    public GameObject player;
-    public float buffProtect;
-    public float buffRegen;
-    public float buffSaber;
+    public PlayerController player;
     // Start is called before the first frame update
     void Start()
     {
-        buffProtect = GameObject.Find("Player").GetComponent<PlayerController>().protectBuff;
-        buffRegen = GameObject.Find("Player").GetComponent<PlayerController>().pointIncreasePerSecond;
-        buffSaber = GameObject.Find("Player").GetComponent<PlayerController>().saberBuff;
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
-    void BringMenuUp()
+    public void BringMenuUp()
     {
         Cursor.lockState = CursorLockMode.None;
         upgradeMenu.SetActive(true);
@@ -35,7 +29,7 @@ public class UpgradeMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
-        buffProtect -= 0.05f;
+        player.protectBuff -= 0.1f;
         Debug.Log("Worked");
     }
     public void UpgradeRegen()
@@ -44,7 +38,7 @@ public class UpgradeMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
-        buffRegen += 0.5f;
+        player.pointIncreasePerSecond += 0.1f;
         Debug.Log("Worked");
     }
     public void UpgradeSaber()
@@ -53,7 +47,7 @@ public class UpgradeMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
-        buffSaber += 0.1f;
+        player.saberBuff += 0.1f;
         Debug.Log("Worked");
     }
 }

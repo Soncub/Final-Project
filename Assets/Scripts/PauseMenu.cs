@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] Button _startGame;
+    public UpgradeMenu UpgradeMenu;
 
     void Start()
     {
@@ -16,11 +17,11 @@ public class PauseMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && UpgradeMenu.upgradeMenu == false)
         {
             Pause();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && UpgradeMenu.upgradeMenu == false)
         {
             if (GameIsPaused)
             {

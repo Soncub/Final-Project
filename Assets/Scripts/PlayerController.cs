@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
         if (WeaponsMenuScript.SpellType == 2)
         {
-            pointIncreasePerSecond = 0.5f;
+            pointIncreasePerSecond = 0.1f;
             currentHealth += pointIncreasePerSecond * Time.deltaTime;
 
             if (currentHealth >= maxHealth)
