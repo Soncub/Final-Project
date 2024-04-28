@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    public AudioClip triggerclip;
     public static bool GameIsPaused = false;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] Button _startGame;
@@ -47,6 +48,7 @@ public class PauseMenu : MonoBehaviour
     }
     private void StartGame()
     {
+        Audio.Instance.PlaySound(triggerclip);
         ScenesManager.Instance.LoadScene(ScenesManager.Scene.StartMenu);
     }
 }

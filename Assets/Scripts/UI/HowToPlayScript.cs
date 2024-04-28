@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class HowToPlayScript : MonoBehaviour
 {
+    public AudioClip triggerclip;
     [SerializeField] Button _startGame;
 
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class HowToPlayScript : MonoBehaviour
     // Update is called once per frame
     private void StartMenu()
     {
+        Audio.Instance.PlaySound(triggerclip);
         ScenesManager.Instance.LoadScene(ScenesManager.Scene.StartMenu);
     }
 }

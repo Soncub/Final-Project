@@ -8,6 +8,7 @@ public class WeaponsMenuScript : MonoBehaviour
 {
     public static int WeaponType;
     public static int SpellType;
+    public AudioClip triggerclip;
 
     [SerializeField] Button _BackMenu;
     [SerializeField] Button _FightButton;
@@ -35,10 +36,12 @@ public class WeaponsMenuScript : MonoBehaviour
     private void GoBack()
     {
         ScenesManager.Instance.LoadScene(ScenesManager.Scene.StartMenu);
+        Audio.Instance.PlaySound(triggerclip);
     }
     private void BattleSwitch()
     {
         ScenesManager.Instance.LoadBattleScreen();
+        Audio.Instance.PlaySound(triggerclip);
     }
     public void SpellChange()
     {
@@ -55,25 +58,31 @@ public class WeaponsMenuScript : MonoBehaviour
     public void TypeSwitch1()
     {
         WeaponType = 1;
+        Audio.Instance.PlaySound(triggerclip);
     }
     public void TypeSwitch2()
     {
         WeaponType = 2;
+        Audio.Instance.PlaySound(triggerclip);
     }
     public void TypeSwitch3()
     {
         WeaponType = 3;
+        Audio.Instance.PlaySound(triggerclip);
     }
     public void SpellSwitch1()
     {
         SpellType = 1;
+        Audio.Instance.PlaySound(triggerclip);
     }
     public void SpellSwitch2()
     {
         SpellType = 2;
+        Audio.Instance.PlaySound(triggerclip);
     }
     public void SpellSwitch3()
     {
         SpellType = 3;
+        Audio.Instance.PlaySound(triggerclip);
     }
 }

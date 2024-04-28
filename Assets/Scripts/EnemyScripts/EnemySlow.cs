@@ -55,8 +55,8 @@ public class EnemySlow : MonoBehaviour
             return;
         }
 
-        Quaternion targetRotation = Quaternion.LookRotation(transform.forward, _targetDirection);
-        Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+         Quaternion targetRotation = Quaternion.LookRotation(transform.forward, _targetDirection);
+         Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
 
         _rigidbody.SetRotation(rotation);
     }

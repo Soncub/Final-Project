@@ -23,7 +23,6 @@ public class EnemyDamage : MonoBehaviour
         if (controller != null)
         {
             controller.ChangeHealth(-damage);
-
         }
     }
 

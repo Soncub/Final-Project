@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UpgradeMenu : MonoBehaviour
 {
+    public AudioClip triggerclip;
     [SerializeField] GameObject upgradeMenu;
     [SerializeField] Button protectButton;
     [SerializeField] Button regenButton;
@@ -30,6 +31,7 @@ public class UpgradeMenu : MonoBehaviour
     }
     public void UpgradeProtect()
     {
+        Audio.Instance.PlaySound(triggerclip);
         Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
@@ -38,6 +40,7 @@ public class UpgradeMenu : MonoBehaviour
     }
     public void UpgradeRegen()
     {
+        Audio.Instance.PlaySound(triggerclip);
         Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
@@ -46,6 +49,7 @@ public class UpgradeMenu : MonoBehaviour
     }
     public void UpgradeSaber()
     {
+        Audio.Instance.PlaySound(triggerclip);
         Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;

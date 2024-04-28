@@ -52,6 +52,10 @@ public class PlayerController : MonoBehaviour
     public delegate void DeathEventHandler();
     public event DeathEventHandler OnPlayerDeath;
 
+    //Sound Effects
+    public AudioClip magic, sword, bell, hit, gameover;
+
+
     //directory file path
     private string _dataPath;
 
@@ -184,6 +188,7 @@ public class PlayerController : MonoBehaviour
         gameOver.SetActive(true);
         GameOvered = true;
         OnPlayerDeath?.Invoke();
+        Audio.Instance.PlaySound(gameover);
     }
 
     void Restart()
@@ -261,19 +266,28 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        if (WeaponsMenuScript.WeaponType == 1 || WeaponsMenuScript.WeaponType == 3)
+        if (WeaponsMenuScript.WeaponType == 1)
         {
             attacking = true;
             attackArea.SetActive(attacking);
             effect.SetActive(attacking);
+            Audio.Instance.PlaySound(sword);
         }
 
-        else
+        else if (WeaponsMenuScript.WeaponType == 2)
         {
             GameObject bulletClone = Instantiate(fireball);
             bulletClone.transform.position = firePoint.position;
             bulletClone.transform.rotation = Quaternion.Euler(0, 0, lookAngle);
             bulletClone.GetComponent<Rigidbody2D>().velocity = firePoint.right * bulletSpeed;
+            Audio.Instance.PlaySound(magic);
+        }
+        else if (WeaponsMenuScript.WeaponType == 3)
+        {
+            attacking = true;
+            attackArea.SetActive(attacking);
+            effect.SetActive(attacking);
+            Audio.Instance.PlaySound(bell);
         }
     }
 
@@ -324,8 +338,9 @@ public class PlayerController : MonoBehaviour
             UIDisplay.instance.UpdateHealth(amount * protectBuff);
             //UI updating Points
             UIDisplay.instance.AddPoint();
-        }
 
+        }
+        Audio.Instance.PlaySound(hit);
         currentHealth = Mathf.Clamp(currentHealth + (amount * protectBuff), 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
     }
