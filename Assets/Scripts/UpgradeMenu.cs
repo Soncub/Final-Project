@@ -28,7 +28,7 @@ public class UpgradeMenu : MonoBehaviour
         Time.timeScale = 0f;
 
     }
-    void UpgradeProtect()
+    public void UpgradeProtect()
     {
         Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
@@ -36,18 +36,20 @@ public class UpgradeMenu : MonoBehaviour
         buffProtect -= 0.05f;
         Debug.Log("Worked");
     }
-    void UpgradeRegen()
+    public void UpgradeRegen()
     {
         Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
         buffRegen += 0.5f;
+        Debug.Log("Worked");
     }
-    void UpgradeSaber()
+    public void UpgradeSaber()
     {
         Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
         buffSaber += 0.1f;
+        Debug.Log("Worked");
     }
 }

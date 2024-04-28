@@ -953,7 +953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &380865056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,6 +1070,7 @@ GameObject:
   - component: {fileID: 466817750}
   - component: {fileID: 466817749}
   - component: {fileID: 466817753}
+  - component: {fileID: 466817754}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1177,6 +1178,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 27480381}
   _startGame: {fileID: 1898583723}
+--- !u!114 &466817754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466817748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22673949d2f04e81b09b971a2662b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeMenu: {fileID: 906811272}
+  protectButton: {fileID: 1983148091}
+  regenButton: {fileID: 1975108013}
+  saberButton: {fileID: 891833491}
+  playerController: {fileID: 529343101}
+  player: {fileID: 7509532514890767142}
+  buffProtect: 0
+  buffRegen: 0
+  buffSaber: 0
 --- !u!1 &476612177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,7 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc28e0a99e42d24282c80b0af8be61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   maxHealth: 5
   currentHealth: 0
   timeInvincible: 2
@@ -1434,8 +1456,8 @@ MonoBehaviour:
   firePoint: {fileID: 1598186402}
   bulletSpeed: 50
   protectBuff: 1
-  pointIncreasePerSecond: 1
-  saberBuff: 1.2
+  pointIncreasePerSecond: 0
+  saberBuff: 1
   gameOver: {fileID: 641411257}
 --- !u!1 &569188276
 GameObject:
@@ -2205,13 +2227,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 906811272}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 466817754}
+        m_TargetAssemblyTypeName: UpgradeMenu, Assembly-CSharp
+        m_MethodName: UpgradeSaber
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2266,7 +2288,6 @@ GameObject:
   - component: {fileID: 906811273}
   - component: {fileID: 906811275}
   - component: {fileID: 906811274}
-  - component: {fileID: 906811276}
   m_Layer: 5
   m_Name: UpgradeMenu
   m_TagString: Untagged
@@ -2336,27 +2357,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906811272}
   m_CullTransparentMesh: 1
---- !u!114 &906811276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906811272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e22673949d2f04e81b09b971a2662b3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgradeMenu: {fileID: 906811272}
-  protectButton: {fileID: 1983148091}
-  regenButton: {fileID: 1975108013}
-  saberButton: {fileID: 891833491}
-  playerController: {fileID: 529343101}
-  player: {fileID: 0}
-  buffProtect: 0
-  buffRegen: 0
-  buffSaber: 0
 --- !u!1 &1137203168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,7 +2375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1137203169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2828,7 +2828,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1502675540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3360,13 +3360,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 906811272}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 466817754}
+        m_TargetAssemblyTypeName: UpgradeMenu, Assembly-CSharp
+        m_MethodName: UpgradeRegen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3493,7 +3493,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1983148092}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 466817754}
+        m_TargetAssemblyTypeName: UpgradeMenu, Assembly-CSharp
+        m_MethodName: UpgradeProtect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1983148092
 MonoBehaviour:
   m_ObjectHideFlags: 0
