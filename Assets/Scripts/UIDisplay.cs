@@ -39,6 +39,10 @@ public class UIDisplay : MonoBehaviour
     public void UpdateHealth(float amount)
     {
         health = health + amount;
+        if (health <= 0)
+        {
+            health = 0f;
+        }
         healthText.text = "Health " + health.ToString();
     }
 }

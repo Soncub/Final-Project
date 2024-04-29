@@ -112,6 +112,13 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        currentHealth += pointIncreasePerSecond * Time.deltaTime;
+        UIDisplay.instance.health = currentHealth;
+        UIDisplay.instance.UpdateHealth(0);
+        if (currentHealth >= maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -145,15 +152,6 @@ public class PlayerController : MonoBehaviour
         if (WeaponsMenuScript.SpellType == 2)
         {
             pointIncreasePerSecond = 0.1f;
-            currentHealth += pointIncreasePerSecond * Time.deltaTime;
-
-            if (currentHealth >= maxHealth)
-            {
-                currentHealth = maxHealth;
-
-                UIDisplay.instance.health = currentHealth;
-                UIDisplay.instance.UpdateHealth(0);
-            }
         }
 
         if (Input.GetKeyDown(KeyCode.V))
@@ -172,7 +170,7 @@ public class PlayerController : MonoBehaviour
             if (invincibleTimer < 0)
                 isInvincible = false;
         }
-        if (currentHealth <= 0)
+        if (currentHealth < 0.1)
         {
             GameOver();
         }
