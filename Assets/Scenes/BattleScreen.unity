@@ -1421,7 +1421,6 @@ MonoBehaviour:
   bell: {fileID: 8300000, guid: 5fd6373b10d55824dacd2600aa7e3ca6, type: 3}
   hit: {fileID: 8300000, guid: 8d7e5087256b9424e93abad1b1f497ec, type: 3}
   gameover: {fileID: 8300000, guid: 401316dbf41336e4a9eb6a6ba82b877b, type: 3}
-  upgrade: {fileID: 466817754}
 --- !u!1 &569188276
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,7 +2809,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 7509532514890767142}
   playercontroller: {fileID: 0}
-  scoreText: {fileID: 1455762514}
   healthText: {fileID: 1405604354}
   health: 0
 --- !u!114 &1405604354
@@ -2938,7 +2936,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 100'
+  m_Text: 
 --- !u!114 &1455762515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2953,7 +2951,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 7509532514890767142}
   playercontroller: {fileID: 0}
-  scoreText: {fileID: 1455762514}
   healthText: {fileID: 1405604354}
   health: 0
 --- !u!222 &1455762516

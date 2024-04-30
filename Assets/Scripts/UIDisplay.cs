@@ -11,10 +11,10 @@ public class UIDisplay : MonoBehaviour
     public GameObject Player;
     public PlayerController playercontroller;
 
-    public Text scoreText;
+    //public Text scoreText;
     public Text healthText;
 
-    int score = 0;
+    //int score = 0;
     public float health = 0.0f;
     // Start is called before the first frame update
 
@@ -26,16 +26,16 @@ public class UIDisplay : MonoBehaviour
     {
         playercontroller = Player.GetComponent<PlayerController>();
         health = playercontroller.maxHealth;
-        scoreText.text = "Score " + score.ToString();
+        //scoreText.text = "Score " + score.ToString();
         healthText.text = "Health " + health.ToString();
     }
-
+/*
     public void AddPoint()
     {
         score += 1;
         scoreText.text = "SCORE " + score.ToString();
     }
-
+*/
     public void UpdateHealth(float amount)
     {
         health = health + amount;

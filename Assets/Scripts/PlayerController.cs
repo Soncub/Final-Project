@@ -353,7 +353,7 @@ public class PlayerController : MonoBehaviour
             //UI updating Health
             UIDisplay.instance.UpdateHealth(amount * protectBuff);
             //UI updating Points
-            UIDisplay.instance.AddPoint();
+            //UIDisplay.instance.AddPoint();
 
         }
         Audio.Instance.PlaySound(hit);
