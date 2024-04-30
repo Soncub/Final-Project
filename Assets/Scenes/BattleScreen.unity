@@ -1421,6 +1421,7 @@ MonoBehaviour:
   bell: {fileID: 8300000, guid: 5fd6373b10d55824dacd2600aa7e3ca6, type: 3}
   hit: {fileID: 8300000, guid: 8d7e5087256b9424e93abad1b1f497ec, type: 3}
   gameover: {fileID: 8300000, guid: 401316dbf41336e4a9eb6a6ba82b877b, type: 3}
+  upgrade: {fileID: 466817754}
 --- !u!1 &569188276
 GameObject:
   m_ObjectHideFlags: 0

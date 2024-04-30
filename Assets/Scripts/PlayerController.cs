@@ -6,9 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Text;
-using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
-using UnityEditor.Experimental.GraphView;
+using UnityEditor.Experimental;
 
 public delegate void EventHandler();
 public class PlayerController : MonoBehaviour
@@ -60,6 +59,7 @@ public class PlayerController : MonoBehaviour
     //directory file path
     private string _dataPath;
 
+
     void Awake()
     {
         _dataPath = Application.persistentDataPath + "/Player_Data/";
@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
 
         UseSpell();
         Autoheal();
+        AddBuff();
         
     }
 
@@ -312,28 +313,31 @@ public class PlayerController : MonoBehaviour
 
         else if (WeaponsMenuScript.SpellType == 3)
         {
-            saberBuff = 1.5f;
-
-            if (WeaponsMenuScript.WeaponType == 1)
-            {
-               attackArea.GetComponent<Sword>().damage = attackArea.GetComponent<Sword>().damage * saberBuff;
-            }
-
-            else if (WeaponsMenuScript.WeaponType == 2)
-            {
-                fireball.GetComponent<Fireball>().damage = fireball.GetComponent<Fireball>().damage * saberBuff;
-            }
-
-            else 
-            {
-                attackArea.GetComponent<Bell>().damage = attackArea.GetComponent<Bell>().damage * saberBuff;
-            }
+            saberBuff = 1.1f;
         }
 
         else 
         {
             Debug.Log("Regen");
         }
+    }
+
+    void AddBuff()
+    {
+        if (WeaponsMenuScript.WeaponType == 1)
+            {
+               attackArea.GetComponent<Sword>().damage = attackArea.GetComponent<Sword>().damage * saberBuff;
+            }
+
+        if (WeaponsMenuScript.WeaponType == 2)
+            {
+                fireball.GetComponent<Fireball>().damage = fireball.GetComponent<Fireball>().damage * saberBuff;
+            }
+
+        if (WeaponsMenuScript.WeaponType == 3)
+            {
+                attackArea.GetComponent<Bell>().damage = attackArea.GetComponent<Bell>().damage * saberBuff;
+            }
     }
 
     public void ChangeHealth(float amount)
