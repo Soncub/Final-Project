@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     float vertical;
     bool isFacingLeft = true;
     Animator animator;
+    AudioSource audioSource;
 
     //variables for weapon attack generation
     public GameObject attackArea;
@@ -82,6 +83,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         Time.timeScale = 1;
 
@@ -154,11 +156,6 @@ public class PlayerController : MonoBehaviour
             pointIncreasePerSecond = 0.1f;
         }
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Save();
-        }
-
         if (Input.GetKeyDown(KeyCode.L))
         {
             Load();
@@ -186,7 +183,9 @@ public class PlayerController : MonoBehaviour
         gameOver.SetActive(true);
         GameOvered = true;
         OnPlayerDeath?.Invoke();
-        Audio.Instance.PlaySound(gameover);
+        audioSource.clip = gameover;
+        audioSource.volume = 0.2f;
+        audioSource.Play();
     }
 
     void Restart()
@@ -197,7 +196,7 @@ public class PlayerController : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScreen");
     }
 
-    void Save()
+    public void Save()
     {
         Vector3 playerPosition = transform.position;
         float playerHealth = currentHealth;
@@ -206,10 +205,16 @@ public class PlayerController : MonoBehaviour
         {
             health = playerHealth,
             playerPosition = playerPosition,
+            weaponType = WeaponsMenuScript.WeaponType,
+            spellType = WeaponsMenuScript.SpellType,
+            protectBuff = protectBuff,
+            pointIncreasePerSecond = pointIncreasePerSecond,
+            saberBuff = saberBuff,
         };
 
         string json = JsonUtility.ToJson(saveData);
         File.WriteAllText(_dataPath + "save.txt", json);
+        Debug.Log("Game Saved");
     }
 
     void Load()
@@ -222,6 +227,11 @@ public class PlayerController : MonoBehaviour
             
             transform.position = load.playerPosition;
             currentHealth = load.health;
+            WeaponsMenuScript.WeaponType = load.weaponType;
+            WeaponsMenuScript.SpellType = load.spellType;
+            protectBuff = load.protectBuff;
+            pointIncreasePerSecond = load.pointIncreasePerSecond;
+            saberBuff = load.saberBuff;
             
             UIDisplay.instance.health = currentHealth;
             UIDisplay.instance.UpdateHealth(0);
@@ -353,4 +363,9 @@ public class SaveData
 {
     public float health;
     public Vector3 playerPosition;
+    public int weaponType;
+    public int spellType;
+    public float protectBuff;
+    public float pointIncreasePerSecond;
+    public float saberBuff;
 }

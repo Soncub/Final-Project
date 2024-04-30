@@ -20,10 +20,7 @@ public class UpgradeMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U) && PauseMenu.GameIsPaused == false)
-        {
-            BringMenuUp();
-        }
+        
     }
     public void BringMenuUp()
     {
