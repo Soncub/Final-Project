@@ -24,7 +24,6 @@ public class UpgradeMenu : MonoBehaviour
     }
     public void BringMenuUp()
     {
-        Cursor.lockState = CursorLockMode.None;
         upgradeMenu.SetActive(true);
         Time.timeScale = 0f;
         isMenuActive = true;
@@ -32,7 +31,6 @@ public class UpgradeMenu : MonoBehaviour
     public void UpgradeProtect()
     {
         Audio.Instance.PlaySound(triggerclip);
-        Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
         player.protectBuff -= 0.1f;
@@ -42,7 +40,6 @@ public class UpgradeMenu : MonoBehaviour
     public void UpgradeRegen()
     {
         Audio.Instance.PlaySound(triggerclip);
-        Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
         player.pointIncreasePerSecond += 0.1f;
@@ -52,10 +49,9 @@ public class UpgradeMenu : MonoBehaviour
     public void UpgradeSaber()
     {
         Audio.Instance.PlaySound(triggerclip);
-        Cursor.lockState = CursorLockMode.Locked;
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
-        player.saberBuff += 0.1f;
+        player.saberBuff += 0.5f;
         Debug.Log("Worked");
         isMenuActive = false;
     }

@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
         }
 
         UseSpell();
+        Autoheal();
         
     }
 
@@ -151,11 +152,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (WeaponsMenuScript.SpellType == 2)
-        {
-            pointIncreasePerSecond = 0.1f;
-        }
-
         if (Input.GetKeyDown(KeyCode.L))
         {
             Load();
@@ -174,6 +170,14 @@ public class PlayerController : MonoBehaviour
         if (GameOvered && Input.GetKeyDown(KeyCode.R))
         {
             Restart();
+        }
+    }
+
+    void Autoheal()
+    {
+        if (WeaponsMenuScript.SpellType == 2)
+        {
+            pointIncreasePerSecond = 0.1f;
         }
     }
 
@@ -308,7 +312,7 @@ public class PlayerController : MonoBehaviour
 
         else if (WeaponsMenuScript.SpellType == 3)
         {
-            saberBuff = 1.1f;
+            saberBuff = 1.5f;
 
             if (WeaponsMenuScript.WeaponType == 1)
             {

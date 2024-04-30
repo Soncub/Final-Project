@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    public float damage = 1;
+    public float damage = 0.5f;
     public float splashRange = 5;
 
     private void OnTriggerEnter2D(Collider2D other)
